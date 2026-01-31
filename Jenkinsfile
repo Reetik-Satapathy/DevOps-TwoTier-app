@@ -1,23 +1,25 @@
 pipeline {
     agent any
+
+    environment {
+        FLASK_APP_HOST = "3.82.57.210"
+        APP_DIR = "/home/ubuntu/DevOps-TwoTier-app"
+    }
+
     stages {
-        stage('Clone Code') {
+        stage('Deploy to Flask EC2') {
             steps {
-                // Replace with your GitHub repository URL
-                git branch: 'main', url: 'https://github.com/Reetik-Satapathy/DevOps-TwoTier-app.git'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t flask-app:latest .'
-            }
-        }
-        stage('Deploy with Docker Compose') {
-            steps {
-                // Stop existing containers if they are running
-                sh 'docker compose down || true'
-                // Start the application, rebuilding the flask image
-                sh 'docker compose up -d --build'
+                sshagent(credentials: ['flaskapp-ssh']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@${FLASK_APP_HOST} "
+                            set -e
+                            cd ${APP_DIR}
+                            git pull origin main
+                            docker compose down
+                            docker compose up -d --build
+                        "
+                    '''
+                }
             }
         }
     }
