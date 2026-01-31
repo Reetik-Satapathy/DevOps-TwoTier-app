@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        FLASK_APP_HOST = "3.82.57.210"
+        FLASK_APP_HOST = "172.31.27.41"
         APP_DIR = "/home/ubuntu/DevOps-TwoTier-app"
     }
 
