@@ -24,7 +24,7 @@ def init_db():
         ''')
         mysql.connection.commit()  
         cur.close()
-
+#####
 
 @app.route('/health')
 def health():
