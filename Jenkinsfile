@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         FLASK_APP_HOST = "172.31.65.80"
-        APP_DIR = "/home/ubuntu/DevOps-Project-Two-Tier-Flask-App"
+        APP_DIR = "/home/ubuntu/DevOps-Project-Two-Tier-App"
     }
 
     stages {
