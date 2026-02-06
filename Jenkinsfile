@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['flaskapp-ssh']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ubuntu@${FLASK_APP_HOST} "
+                        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes ubuntu@${FLASK_APP_HOST} "
                             set -e
                             cd ${APP_DIR}
                             git pull origin main
