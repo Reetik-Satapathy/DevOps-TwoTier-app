@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        FLASK_APP_HOST = "172.31.27.41"
-        APP_DIR = "/home/ubuntu/DevOps-TwoTier-app"
+        FLASK_APP_HOST = "172.31.65.80"
+        APP_DIR = "/home/ubuntu/DevOps-Project-Two-Tier-Flask-App"
     }
 
     stages {
